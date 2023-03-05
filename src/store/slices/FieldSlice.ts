@@ -17,11 +17,7 @@ export const fieldSlice = createSlice({
             return initField();
         },
         switchWait(state, action: PayloadAction<boolean>){
-            if (action.payload) {
-                state.status = 'waiting'
-            } else {
-                state.status = 'inGame'
-            }
+            state.isWaiting = action.payload;
         },
         start(state) {
             state.status = 'inGame';

@@ -79,7 +79,7 @@ const cellNums = [
 ];
 
 interface StatusFaceProps {
-    status: Status;
+    status: Status | 'waiting';
     height: number;
     width: number;
 }
@@ -103,17 +103,21 @@ function splitByDigits(number: number) {
 
 const StatusFace: React.FC<StatusFaceProps> = ({status, height, width}) => {
     const FaceComponent = statusFaces[status];
-    return <FaceComponent height={height} width={width}/>
+    return <div>
+        <FaceComponent height={height} width={width} style={{overflow: 'hidden'}}/>
+    </div>
 }
 const Digit: React.FC<NumberProps> = ({digit, height, width}) => {
     const DigitComponent = digits[digit];
-    return <DigitComponent height={height} width={width}/>
+    return <div>
+        <DigitComponent height={height} width={width}/>
+    </div>
 }
 
 const GameMenu: React.FC = () => {
     const {time, startTimer, stopTimer, resetTimer} = useTimer();
 
-    const {remainingMarks, status} = useAppSelector(selectField);
+    const {remainingMarks, status, isWaiting} = useAppSelector(selectField);
     const dispatch = useAppDispatch();
 
     useMemo(() => {
@@ -142,7 +146,7 @@ const GameMenu: React.FC = () => {
                 </div>
             </div>
             <div className={styles.face} onClick={handleClick}>
-                <StatusFace status={status} height={54} width={54}/>
+                <StatusFace status={isWaiting ? 'waiting' : status} height={54} width={54}/>
             </div>
             <div className={styles.time}>
                 <div className={styles.numbers}>
@@ -151,6 +155,7 @@ const GameMenu: React.FC = () => {
                     })}
                 </div>
             </div>
+            {/*<div>{status}</div>*/}
         </div>
     )
 }
@@ -168,12 +173,22 @@ const GameField: React.FC = () => {
     }
 
     const handleMouseUp = (event: React.MouseEvent<HTMLDivElement>, cell: Cell) => {
-        if (event.button !== 0) return;
+        if (
+            event.button !== 0 ||
+            field.status === 'loss'
+            || field.status === 'victory'
+        ) return;
+
         dispatch(actions.switchWait(false));
         openCell(cell);
     }
     const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>, cell: Cell) => {
-        if (event.button !== 0) return;
+        if (
+            event.button !== 0  ||
+            field.status === 'loss' ||
+            field.status === 'victory'
+        ) return;
+
         dispatch(actions.switchWait(true));
     }
 

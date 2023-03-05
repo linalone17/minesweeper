@@ -39,7 +39,7 @@ export interface EmptyCell {
 }
 
 export type Cell = MineCell | EmptyCell;
-export type Status = 'ready' | 'inGame' | 'waiting' | 'victory' | 'loss';
+export type Status = 'ready' | 'inGame' | 'victory' | 'loss';
 
 interface UninitializedField {
     status: Status;
@@ -49,6 +49,7 @@ interface UninitializedField {
     remainingMarks: number;
     openedCells: number;
     value: Array<Array<Cell | UninitializedCell>>;
+    isWaiting: boolean;
 }
 
 export interface Field {
@@ -59,6 +60,7 @@ export interface Field {
     remainingMarks: number;
     openedCells: number;
     value: Array<Array<Cell>>;
+    isWaiting: boolean;
 }
 
 const uninitializedCell: UninitializedCell = {
@@ -154,6 +156,7 @@ export function initField(
         remainingMarks: minesAmount,
         openedCells: 0,
         value: fieldValue,
+        isWaiting: false
     };
 
     const minesBatchedCoords = generateMinesBatchedCoords(minesAmount + 1, size);
