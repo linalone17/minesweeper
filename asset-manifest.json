@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/minesweeper/static/css/main.d25058a4.css",
-    "main.js": "/minesweeper/static/js/main.6998e277.js",
-    "static/media/face_lose.svg": "/minesweeper/static/media/face_lose.53466a1aa2ae53345d64cb004d4ba91d.svg",
+    "main.js": "/minesweeper/static/js/main.5f311a41.js",
+    "static/media/face_lose.svg": "/minesweeper/static/media/face_lose.35b908a990a602e135142cd936aa36e6.svg",
     "static/media/nums_background.svg": "/minesweeper/static/media/nums_background.466a6ae86f4d6ba8a1e467f852d14512.svg",
-    "static/media/face_active.svg": "/minesweeper/static/media/face_active.652d2ac6f089312f5bed078f1dc8e582.svg",
-    "static/media/face_win.svg": "/minesweeper/static/media/face_win.652d2ac6f089312f5bed078f1dc8e582.svg",
-    "static/media/face_unpressed.svg": "/minesweeper/static/media/face_unpressed.8af5cd1cc051b0667878a1096c7a4d79.svg",
-    "static/media/face_pressed.svg": "/minesweeper/static/media/face_pressed.41a46f04e47f0b0d29a3450677b63d95.svg",
-    "static/media/mine_red.svg": "/minesweeper/static/media/mine_red.c73463002518534ef5b6ead1b7e85eaf.svg",
-    "static/media/mine.svg": "/minesweeper/static/media/mine.73a934f84fd3b1b6987e543563bd8fcc.svg",
+    "static/media/face_active.svg": "/minesweeper/static/media/face_active.fd40a6138118e721d90b88bc7e165d04.svg",
+    "static/media/face_win.svg": "/minesweeper/static/media/face_win.77490d40072dceea2a5983b2d3c8637e.svg",
+    "static/media/face_unpressed.svg": "/minesweeper/static/media/face_unpressed.ec78c07bd6bb730030c36dbe4591b10f.svg",
+    "static/media/face_pressed.svg": "/minesweeper/static/media/face_pressed.f6a24eec84537da1daaf6352d9805e6c.svg",
+    "static/media/mine_red.svg": "/minesweeper/static/media/mine_red.debe02b43b520ec4e4c38a6ce9604004.svg",
+    "static/media/mine.svg": "/minesweeper/static/media/mine.85be28e478c8784bdeba6e774e3698b5.svg",
     "static/media/type8.svg": "/minesweeper/static/media/type8.714d02b142586196adbe8c0ba8c7b61e.svg",
-    "static/media/flag.svg": "/minesweeper/static/media/flag.675a4e73ef348300e6f1887edfa0c8c6.svg",
-    "static/media/mine_wrong.svg": "/minesweeper/static/media/mine_wrong.84833f613cd0522e029bcd322a32fd52.svg",
+    "static/media/mine_wrong.svg": "/minesweeper/static/media/mine_wrong.a90210cf3de88f8a4a5370ff82973257.svg",
+    "static/media/flag.svg": "/minesweeper/static/media/flag.d977026fc2092f3886c2dd1eaa075dfd.svg",
     "static/media/d7.svg": "/minesweeper/static/media/d7.997c1a20e8fde24c053b8777ca9af135.svg",
     "static/media/d9.svg": "/minesweeper/static/media/d9.6ec0daac0da821b177b989e495b67bdd.svg",
     "static/media/d8.svg": "/minesweeper/static/media/d8.acd16e8b1d74da8b4689e4d578364512.svg",
@@ -23,10 +23,10 @@
     "static/media/d3.svg": "/minesweeper/static/media/d3.2cd8d56a38ea07c6959cd427cf0f7e39.svg",
     "static/media/d0.svg": "/minesweeper/static/media/d0.a03bc2b0ae2dd771828db960f0284f93.svg",
     "static/media/d1.svg": "/minesweeper/static/media/d1.e15edaa0335f5865ef4e2c48a09d8655.svg",
-    "static/media/closed_flag.svg": "/minesweeper/static/media/closed_flag.407b216457921bb4bc62d0781021460d.svg",
     "static/media/type2.svg": "/minesweeper/static/media/type2.5b2ec920ada4683c788c6c12808887c5.svg",
     "static/media/type3.svg": "/minesweeper/static/media/type3.261ca059db695e3e46519d0d97d6410d.svg",
     "static/media/type6.svg": "/minesweeper/static/media/type6.4c822a51e448b7c55777cae92c6f7221.svg",
+    "static/media/closed_flag.svg": "/minesweeper/static/media/closed_flag.6af2a86ed4da6b651914b7c3eab46730.svg",
     "static/media/type5.svg": "/minesweeper/static/media/type5.352eea00614034083b239966568cdc4e.svg",
     "static/media/type4.svg": "/minesweeper/static/media/type4.1898e43ccc4a3be4f09ca4c9d06eb44d.svg",
     "static/media/type7.svg": "/minesweeper/static/media/type7.9d878de7c3df48a332f95cce5c1063a4.svg",
@@ -35,10 +35,10 @@
     "static/media/closed.svg": "/minesweeper/static/media/closed.671b17c08d183bad88111b2dd2c63271.svg",
     "static/media/type0.svg": "/minesweeper/static/media/type0.482cb8d8c61679c3fe1abedbffb0f1cb.svg",
     "main.d25058a4.css.map": "/minesweeper/static/css/main.d25058a4.css.map",
-    "main.6998e277.js.map": "/minesweeper/static/js/main.6998e277.js.map"
+    "main.5f311a41.js.map": "/minesweeper/static/js/main.5f311a41.js.map"
   },
   "entrypoints": [
     "static/css/main.d25058a4.css",
-    "static/js/main.6998e277.js"
+    "static/js/main.5f311a41.js"
   ]
 }
