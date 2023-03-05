@@ -1,0 +1,1 @@
+export {randomTrigger} from './randomTrigger';

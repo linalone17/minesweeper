@@ -1,6 +1,55 @@
 .Game {
-  height: 500px;
-  width: 1000px;
+  user-select: none;
+
+  height: 600px;
+  width: 500px;
+
   outline: 5px solid white;
-  background-color: #2C2F33;
+  background-color: #c9c9c9;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.GameMenu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 113px;
+  .numbers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: black 100px;
+    background-size: 100px;
+    width: 100px;
+    height: 60px;
+    gap: 2px;
+  }
+
+}
+
+.GameField {
+  display: flex;
+  flex-direction: column;
+
+  .row {
+    display: flex;
+
+    .cell {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+
+      .content {
+
+      }
+    }
+  }
 }
