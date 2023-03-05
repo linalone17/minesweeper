@@ -1,6 +1,5 @@
-import {randomTrigger} from "../utils";
 import {Nullable} from "../typings/utils";
-import {getRandomNumber} from "../utils/getRandomNumber";
+import {getRandomNumber} from "../utils";
 
 export interface Size  {
     readonly rows: number;
@@ -286,7 +285,7 @@ export function openCell(cell: Cell, field: Field): Field {
     if (field.openedCells === field.size.rows * field.size.cols - field.minesAmount) {
         field.status = 'victory';
     }
-    console.log(field.openedCells, field.size.rows * field.size.cols - field.minesAmount)
+
     return field;
 }
 

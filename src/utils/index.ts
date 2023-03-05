@@ -1,1 +1,2 @@
-export {randomTrigger} from './randomTrigger';
+export {getRandomNumber} from './getRandomNumber';
+export {splitByDigits} from './splitByDigits'

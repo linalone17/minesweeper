@@ -1,13 +1,14 @@
-import React, {useEffect, useMemo, useState} from "react";
+import React, {useMemo} from "react";
 
+import {selectField, actions} from "../../store/slices/FieldSlice";
 import {useTimer, useAppDispatch} from "../../hooks";
+import {useAppSelector} from "../../hooks/useAppDispatch";
 
 import styles from './Game.module.scss';
 import cn from 'classnames';
 
-import {useAppSelector} from "../../hooks/useAppDispatch";
-import {selectField, actions} from "../../store/slices/FieldSlice";
 import {Cell, Status} from "../../logic/game";
+import {splitByDigits} from "../../utils";
 
 import {
     Closed,
@@ -15,7 +16,6 @@ import {
     FlagWrong,
     FlagClosed,
     Mine,
-    MineRed,
 
     Type0,
     Type1,
@@ -29,11 +29,9 @@ import {
 
     FaceActive,
     FaceLose,
-    FacePressed,
     FaceUnpressed,
     FaceWin,
 
-    DigitsBackground,
     Digit0,
     Digit1,
     Digit2,
@@ -53,6 +51,17 @@ const statusFaces = {
     loss: FaceLose,
     victory: FaceWin
 };
+
+interface StatusFaceProps {
+    status: Status | 'waiting';
+    height: number;
+    width: number;
+}
+interface NumberProps {
+    digit: number;
+    height: number;
+    width: number;
+}
 
 const digits = [
     Digit0,
@@ -77,29 +86,6 @@ const cellNums = [
     Type7,
     Type8
 ];
-
-interface StatusFaceProps {
-    status: Status | 'waiting';
-    height: number;
-    width: number;
-}
-interface NumberProps {
-    digit: number;
-    height: number;
-    width: number;
-}
-
-function splitByDigits(number: number) {
-    if (number > 1000) {
-        number = number % 1000;
-    }
-    const a = number % 10;
-    const b = ((number % 100 - a) / 10) | 0;
-    const c = ((number % 1000 - number % 100) / 100) | 0;
-
-    return [c, b, a]
-}
-
 
 const StatusFace: React.FC<StatusFaceProps> = ({status, height, width}) => {
     const FaceComponent = statusFaces[status];
@@ -175,8 +161,9 @@ const GameField: React.FC = () => {
     const handleMouseUp = (event: React.MouseEvent<HTMLDivElement>, cell: Cell) => {
         if (
             event.button !== 0 ||
-            field.status === 'loss'
-            || field.status === 'victory'
+            field.status === 'loss' ||
+            field.status === 'victory' ||
+            cell.isOpened
         ) return;
 
         dispatch(actions.switchWait(false));
@@ -186,7 +173,8 @@ const GameField: React.FC = () => {
         if (
             event.button !== 0  ||
             field.status === 'loss' ||
-            field.status === 'victory'
+            field.status === 'victory' ||
+            cell.isOpened
         ) return;
 
         dispatch(actions.switchWait(true));
@@ -209,7 +197,7 @@ const GameField: React.FC = () => {
                                 if (cell.mark === 'flag') {
                                     if (
                                         field.status === 'loss' &&
-                                        cell.type === 'mine'
+                                        cell.type !== 'mine'
                                     ) {
                                         CellBackground = FlagWrong;
                                     } else {
