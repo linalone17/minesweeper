@@ -4,25 +4,19 @@ import {
     initField,
     openCell as openFieldCell,
     markCell as markFieldCell
-} from "../../logic/game";
+} from "../../game/logic";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {RootState} from "../store";
 
-const initialState = initField();
+const initialState: Field = initField();
 export const fieldSlice = createSlice({
     name: 'field',
     initialState,
     reducers: {
-        init() {
-            return initField();
-        },
         switchWait(state, action: PayloadAction<boolean>){
             state.isWaiting = action.payload;
         },
-        start(state) {
-            state.status = 'inGame';
-        },
-        restart(state) {
+        restart() {
             return initField();
         },
         openCell(state, action: PayloadAction<Cell>) {

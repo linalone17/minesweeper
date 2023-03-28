@@ -104,7 +104,7 @@ function getNearbyCellsCoords (currentCellCoords: Coords, size: Size): Array<Coo
     return items
 }
 
-function getBatchedCoords(coords: Coords, size: Size): BatchedCoords {
+function batchCoords(coords: Coords, size: Size): BatchedCoords {
     const digits = Math.max(
         size.rows.toString().length,
         size.cols.toString().length
@@ -120,7 +120,7 @@ function generateMinesBatchedCoords(minesAmount: number, size: Size): Set<Batche
         const row = getRandomNumber(0, size.rows - 1);
         const col = getRandomNumber(0, size.cols - 1);
 
-        const batchedCoords = getBatchedCoords({row, col}, size)
+        const batchedCoords = batchCoords({row, col}, size)
         if (!batchedCoordsSet.has(batchedCoords)) {
             batchedCoordsSet.add(batchedCoords);
         }
@@ -168,7 +168,7 @@ export function initField(
             let currentCell = field.value[row][col];
             currentCell.coords = {row, col};
 
-            if (minesBatchedCoords.has(getBatchedCoords(currentCell.coords, size))) {
+            if (minesBatchedCoords.has(batchCoords(currentCell.coords, size))) {
                 // if mine
 
                 // make MineCell from InitialCell

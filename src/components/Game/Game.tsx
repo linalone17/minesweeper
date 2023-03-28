@@ -1,13 +1,15 @@
 import React, {useMemo} from "react";
 
 import {selectField, actions} from "../../store/slices/FieldSlice";
-import {useTimer, useAppDispatch} from "../../hooks";
-import {useAppSelector} from "../../hooks/useAppDispatch";
+import {
+    useTimer,
+    useAppDispatch,
+    useAppSelector
+} from "../../hooks";
 
 import styles from './Game.module.scss';
-import cn from 'classnames';
 
-import {Cell, Status} from "../../logic/game";
+import {Cell, Status} from "../../game/logic";
 import {splitByDigits} from "../../utils";
 
 import {
@@ -44,23 +46,23 @@ import {
     Digit9
 } from '../assets';
 
+interface StatusFaceProps {
+    status: Status | 'waiting';
+    height: number;
+    width: number;
+}
+interface DigitProps {
+    digit: number;
+    height: number;
+    width: number;
+}
+
 const statusFaces = {
     waiting: FaceActive,
     ready: FaceUnpressed,
     inGame: FaceUnpressed,
     loss: FaceLose,
     victory: FaceWin
-};
-
-interface StatusFaceProps {
-    status: Status | 'waiting';
-    height: number;
-    width: number;
-}
-interface NumberProps {
-    digit: number;
-    height: number;
-    width: number;
 }
 
 const digits = [
@@ -73,7 +75,8 @@ const digits = [
     Digit6,
     Digit7,
     Digit8,
-    Digit9];
+    Digit9
+]
 
 const cellNums = [
     Type0,
@@ -85,15 +88,16 @@ const cellNums = [
     Type6,
     Type7,
     Type8
-];
+]
 
 const StatusFace: React.FC<StatusFaceProps> = ({status, height, width}) => {
     const FaceComponent = statusFaces[status];
     return <div>
-        <FaceComponent height={height} width={width} style={{overflow: 'hidden'}}/>
+        <FaceComponent height={height} width={width}/>
     </div>
 }
-const Digit: React.FC<NumberProps> = ({digit, height, width}) => {
+
+const Digit: React.FC<DigitProps> = ({digit, height, width}) => {
     const DigitComponent = digits[digit];
     return <div>
         <DigitComponent height={height} width={width}/>
@@ -149,7 +153,6 @@ const GameMenu: React.FC = () => {
 const GameField: React.FC = () => {
     const field = useAppSelector(selectField);
     const dispatch = useAppDispatch();
-
     const openCell = (cell: Cell) => {
         dispatch(actions.openCell(cell));
     }
@@ -188,9 +191,9 @@ const GameField: React.FC = () => {
         <div className={styles.GameField}>
             {field.value.map((row) => {
 
-                return (
+                return ( // here not using key is safe since order is unchanged
                     <div className={styles.row}>
-                        {row.map((cell) => { // here not using key is safe, order is unchanged
+                        {row.map((cell) => {
                             let CellBackground;
 
                             if (!cell.isOpened) {
@@ -222,17 +225,10 @@ const GameField: React.FC = () => {
                             }
                             return (
                                 <div
-                                    className={cn(
-                                        {
-                                            [styles.opened]: cell.isOpened
-                                        },
-                                        styles.cell
-                                    )}
-                                    // onClick={(event) => {
-                                    //     event.preventDefault();
-                                    //     handleLeftClick(event, cell)
-                                    // }}
+                                    className={styles.cell}
+
                                     key={`${cell.coords.row}.${cell.coords.col}`}
+
                                     onMouseDown={(event) => {
                                         event.preventDefault();
                                         handleMouseDown(event, cell)
